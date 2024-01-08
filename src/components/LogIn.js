@@ -22,6 +22,7 @@ function LogIn({ isOpen, onLogin, setCurrentUser, onClose, response }) {
       if (onLogin) {
         onLogin(data.sessionCreate);
         setCurrentUser(data)
+        console.log('data', data)
       }
     } catch (error) {
       console.error("Mutation error:", error.message);
