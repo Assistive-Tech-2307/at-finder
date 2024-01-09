@@ -13,7 +13,13 @@ function NrdbForm({onNrdbSubmit}) {
     console.log("I am here")
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // onNrdbSubmit(formData);
+    const submittedData = {
+      name:formData.name,
+      description: formData.description,
+      website: formData.website,
+      category: formData.category,
+      creator: formData.creator,
+    }
     setFormData({
       name: '',
       description: '',
