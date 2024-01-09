@@ -3,58 +3,54 @@ import { Link } from "react-router-dom";
 import { useState } from 'react'
 import LogIn from "./LogIn";
 import users from "../mockData/userData";
+import logo from '../assets/AI-AT-Logo2.png'
 
-
-
-
-function Header({handleButtonClick}) {
+function Header({ currentUser, setCurrentUser, handleButtonClick}) {
 
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null)
+  const [response, setResponse] = useState(null)
 
   const handleLogin = (username, password) => {
-   const user = users.find(user => user.email === username && user.password === password);
-   if (user) {
-    console.log('Logged in as:', user.name);
-    setIsLoggedIn(true);
-    setCurrentUser(user);
-    setLoginOpen(false);
-   } else {
-    console.log('Invalid credentials')
+    const user = users.find(user => user.email === username && user.password === password);
+    if (user) {
+      console.log('LOGGED IN AS ===', user.name);
+      setIsLoggedIn(true);
+      setCurrentUser(user);
+      setLoginOpen(false);
+    } else {
+      console.log('Invalid credentials')
+      setResponse('Invalid credentials')
    }
   }
 
+  const handleCloseModal = () => {
+    setLoginOpen(false);
+  };
 
   return (
     <header className='header'>
+      <h1 className="sr-only">AI AT Ally</h1>
       <Link to='/'>
         <div className='logo-title-container'>
-          <img src='help.png' className='help-logo' alt='Helping Hands Logo' />
-          <div className='title-container'>
-            <h1 className='title'>AI AT Ally</h1>
-            <p className='header-title'>
-              <em>Artificial Intelligence Assistive Tech </em>
-            </p>
-          </div>
+          <img className='logo' src={logo} alt='AI AT Ally logo'/>
         </div>
       </Link>
-
       <div className='button-container'>
-
-
       <div className="login-button-container">
         {!isLoggedIn && (
           <button className="login-button" onClick={() => setLoginOpen(true)}>Log In</button>
           )}
-        {isLoggedIn && <p>Welcome to AI AT Ally, {currentUser.name}! You have successfully logged in!</p>}
+        {isLoggedIn && currentUser && <p>Welcome, {currentUser.name}! You have successfully logged in!</p>}
         <LogIn 
           isOpen={isLoginOpen}
           onLogin={handleLogin}
+          setCurrentUser={setCurrentUser}
+          onClose={handleCloseModal} 
+          response={response}
         />
           <button className='about-button' onClick={() => handleButtonClick('/about')}>About</button>
       </div>
-
       </div>
     </header>
   );

@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "category": "Blindness",
+        "description": "Hello I am a screen reader",
+        "title": "JAWS",
+        "website": "http://localhost:3000/findmyat"
+      }
+    },
+    {
+      "attributes": {
+        "category": "Blindness",
+        "description": "Hello I am a free screen reader",
+        "title": "NVDA",
+        "website": "http://localhost:3000/findmyat"
+      }
+    }
+  ]
+}

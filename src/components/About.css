@@ -1,25 +1,18 @@
-.category-card {
-  box-sizing: border-box;
-  border: 3px solid black;
-  padding: 10px;
-  height: 300px;
+.h2-ms,
+.p-ms {
+  text-align: center;
 }
 
-.mission-statement-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 3px solid black;
-  width: 400px;
-  height: 595px;
-  margin-top: 15px;
-
+.h2-ms {
+  color: #240754;
+  font-size: 1.15rem;
 }
 
 .contributor-card-container {
-  display: flex; 
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
+  padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+    grid-gap: 1rem;
 }
+
+

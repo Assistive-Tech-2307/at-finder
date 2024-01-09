@@ -2,12 +2,12 @@ import './CommentSection.css'
 import CommentCard from './CommentCard'
 
 function CommentSection ({comments}) {
-  console.log('beep', comments)
+  console.log('COMMENTS ===', comments)
   
   return (
-    <div>
+    <div className='Tech-list'>
       {comments.map((comment) =>
-        <CommentCard comment={comment} />
+        <CommentCard comment={comment} key={comment.id}/>
       )
       }
     </div>

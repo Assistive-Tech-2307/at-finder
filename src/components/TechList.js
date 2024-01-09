@@ -1,15 +1,19 @@
 import './TechList.css'
 import TechCard from './TechCard'
 
-function TechList ({tech, onCommentSubmit}) {
+function TechList ({tech, onCommentSubmit, category, currentUser}) {
+  
+  console.log('techList', tech)
   return (
-    <div>
-      <h1>Tech List</h1>
+    <div className='Tech-list'>
       {tech.map((techPiece) =>
         <TechCard 
-          key={techPiece.title}
-          title={techPiece.title}
+          key={techPiece.attributes.title}
+          techPiece={techPiece.attributes}
+          website={techPiece.attributes.website}
           onCommentSubmit={onCommentSubmit} 
+          category={category}
+          currentUser={currentUser}
         />
       )
 
