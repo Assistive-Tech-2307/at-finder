@@ -1,6 +1,43 @@
 import React, { useState } from "react";
+import './../CommentForm.css';
+
+// http://localhost:3005
+
 
 function NrdbForm({onNrdbSubmit}) {
+
+
+  const fetchFormData = (submittedData) => {
+    return new Promise((resolve, reject)=>{
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(submittedData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      fetch('http://localhost:3005/techs', options)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response is bad")
+          }
+          return response.JSON
+        })
+        .then(data => {
+          console.log(data)
+          setSuccess('Yeah you did it')
+          resolve()
+        })
+        .catch(error => {
+          setSuccess('oops')
+          console.error(error)
+          reject(error)
+        });
+    })
+  };
+
+  const [success, setSuccess] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -14,12 +51,17 @@ function NrdbForm({onNrdbSubmit}) {
     e.preventDefault();
     console.log('Form submitted:', formData);
     const submittedData = {
-      name:formData.name,
+      name: formData.name,
       description: formData.description,
       website: formData.website,
       category: formData.category,
       creator: formData.creator,
-    }
+    };
+    console.log("test");
+
+    if (!submittedData.name === ''){
+    fetchFormData(submittedData)
+    
     setFormData({
       name: '',
       description: '',
@@ -27,6 +69,8 @@ function NrdbForm({onNrdbSubmit}) {
       category: '',
       creator: 3,
     });
+  }else {
+    setSuccess('really, cmon')}
   };
 
   const handleChange = (e) => {
@@ -38,8 +82,8 @@ function NrdbForm({onNrdbSubmit}) {
   };
 
   return(
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='Comment-form'>
+      <form className='comment-form-content' onSubmit={handleSubmit}>
         <label>
           Name:
           <input type="text" name="name" value={formData.name} onChange={handleChange} />
@@ -61,6 +105,7 @@ function NrdbForm({onNrdbSubmit}) {
           <input type="integer" name="description" value={formData.creator} readOnly />
         </label>
         <button type="submit">Submit</button>
+      <p>{success}</p>
       </form>
     </div>
   );
