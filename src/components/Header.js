@@ -11,16 +11,16 @@ function Header({ currentUser, setCurrentUser, handleButtonClick}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [response, setResponse] = useState(null)
 
-  const handleLogin = (username, password) => {
-    const user = users.find(user => user.email === username && user.password === password);
+  const handleLogin = (user) => {
+    console.log('howdy', user)
     if (user) {
       console.log('LOGGED IN AS ===', user.name);
       setIsLoggedIn(true);
       setCurrentUser(user);
       setLoginOpen(false);
     } else {
-      console.log('Invalid credentials')
       setResponse('Invalid credentials')
+      console.log('oops')
    }
   }
 
