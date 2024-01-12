@@ -59,7 +59,7 @@ function NrdbForm({onNrdbSubmit}) {
     };
     console.log("test");
 
-    if (!submittedData.name === ''){
+    
     fetchFormData(submittedData)
     
     setFormData({
@@ -69,9 +69,9 @@ function NrdbForm({onNrdbSubmit}) {
       category: '',
       creator: 3,
     });
-  }else {
-    setSuccess('really, cmon')}
-  };
+
+   }
+  ;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
