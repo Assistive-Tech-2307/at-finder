@@ -12,6 +12,7 @@ function Header({ currentUser, setCurrentUser, handleButtonClick}) {
   const [response, setResponse] = useState(null)
 
   const handleLogin = (user) => {
+    console.log('howdy', user)
     if (user) {
       console.log('LOGGED IN AS ===', user.name);
       setIsLoggedIn(true);
