@@ -30,6 +30,13 @@ function LogIn({ isOpen, onLogin, setCurrentUser, onClose, response }) {
     }
   };
 
+  const handlePredefinedLogin = async () => {
+    const predefinedEmail = 'rosa@aol.com'; // Replace with your predefined email
+    const predefinedPassword = 'rosaslaw10!'; // Replace with your predefined password
+    setEmail(predefinedEmail);
+    setPassword(predefinedPassword);
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -59,6 +66,7 @@ function LogIn({ isOpen, onLogin, setCurrentUser, onClose, response }) {
         />
         </label>
         <button className="submit-button" type="submit">Login</button>
+        <button className="predefined-login-button" type="button" onClick={handlePredefinedLogin}>Login as Guest</button>
         {loginErrorMessage && <div className='login-error-message'> {loginErrorMessage}</div>}
         {response && <p>{response}</p>}
       </form>

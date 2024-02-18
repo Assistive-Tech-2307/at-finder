@@ -38,10 +38,12 @@ function Header({ currentUser, setCurrentUser, handleButtonClick}) {
       </Link>
       <div className='button-container'>
       <div className="login-button-container">
-        {!isLoggedIn && (
-          <button className="login-button" onClick={() => setLoginOpen(true)}>Log In</button>
-          )}
-        {isLoggedIn && currentUser && <p>Welcome, {currentUser.name}! You have successfully logged in!</p>}
+      {!isLoggedIn ? (
+  <button className="login-button" onClick={() => setLoginOpen(true)}>Log In</button>
+) : (
+  <button className="login-button" onClick={() => window.location.reload()}>Log Out</button>
+)}
+
         <LogIn 
           isOpen={isLoginOpen}
           onLogin={handleLogin}
